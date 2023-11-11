@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Resultados de la Búsqueda</h1>
+    
+    <form method="get" action="{% url 'buscar' %}">
+        <input type="text" name="q" placeholder="Buscar..." value="{{ query }}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <ul>
+        {% for resultado in resultados %}
+            <li>
+                <a href="{% url 'detalle_discusion' resultado.id %}">{{ resultado.titulo }}</a>
+            </li>
+        {% empty %}
+            <p>No se encontraron resultados.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}
